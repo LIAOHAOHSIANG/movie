@@ -1,32 +1,54 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+    <WtwHeader></WtwHeader>
+    <div class="page">
+      <router-view/>
+    </div>
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import WtwHeader from './components/WtwHeader.vue';
+
+export default {
+    components: {  WtwHeader }
+}
+</script>
+
+<style lang="scss">
+// 變數
+$primary_color:linear-gradient(91.47deg, #C10171 3.73%, #5C00F2 100%);
+
+body{
+  margin:0px;
+  background-color:#1B1E25;
+  color:white;
+}
+// 通用
+.container{
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-nav {
-  padding: 30px;
+
+/** Page */
+.page{
+  margin-top: 60px;
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
+
+
+.section_movie{
+  padding-top:40px;
+  padding-bottom: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(104,107,114,0.1);
+  border-radius: 20px;
 }
 
-nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>

@@ -1,18 +1,26 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div>
+        <WtwBanner></WtwBanner>
+        <MovieArea title="熱門電影"></MovieArea>
+        <MovieArea title="熱門韓劇" :is-dark="true"></MovieArea>
+        <MovieArea title="熱門陸劇、台劇"></MovieArea>
+        <MovieArea title="熱門美劇" :is-dark="true"></MovieArea>
+        <filter-div></filter-div>
+    </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
-export default {
-  name: 'HomeView',
-  components: {
-    HelloWorld
-  }
-}
+<script>
+    import FilterDiv from '@/components/WtwFilter.vue'
+    import WtwBanner from '@/components/WtwBanner.vue';
+    import MovieArea from '@/components/MovieArea.vue';
+
+    export default {
+        name: 'HomeView',
+        components: {
+            FilterDiv,
+            WtwBanner,
+            MovieArea
+        }
+    }
 </script>
