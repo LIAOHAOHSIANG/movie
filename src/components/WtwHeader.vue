@@ -18,9 +18,9 @@
                 </div>
             </div>
             <ul class="header-navbar">
-                <li class="active">電影</li>
+                <li class="active"><router-link to="/">電影</router-link></li>
                 <li >戲劇</li>
-                <li>主題館</li>
+                <li><router-link to="topic">主題館</router-link></li>
                 <li>我的片單</li>
             </ul>
             <div class="header-profile">
@@ -113,6 +113,10 @@
         position: relative;
         text-align: center;
         cursor: pointer;
+            a{
+                color: inherit;
+                text-decoration: inherit;
+            }
 
         &.active::after{
             content: "";
