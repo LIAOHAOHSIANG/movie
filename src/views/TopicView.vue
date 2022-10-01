@@ -1,8 +1,8 @@
 <template>
-    <div class="topic container">
+    <div class="topic container not-banner">
         <div v-for="($item,$key) in list" :key="$key" class="topic_card">
             <div class="topic_card-title">
-                浪漫愛情
+                {{$item.name}}
             </div>            
         </div>
     </div>
@@ -10,6 +10,7 @@
 
 
 <script>
+    import { getMovieGenre } from '@/fetch';
     export default {
         name: 'TopicView',
         components: {
@@ -20,6 +21,13 @@
                     1,2,3,4,5,6,7,8,9,10,11
                 ]
             }
+        },
+        mounted:function() {
+            getMovieGenre()
+            .then((response)=>{
+                console.log(response.data);
+                this.list = response.data.genres;
+            })
         }
     }
 </script>

@@ -4,7 +4,9 @@
             <WtwTitle>類型</WtwTitle>
             <div class="wtw-select filter_group-content">
                 <WtwSelectButton v-for="($item,$key) in list" :key="$key" 
-                class="filter-button" :active="$item == select_item" >{{$item}}</WtwSelectButton>
+                class="filter-button" :active="select_item && $item.id == select_item.id"
+                v-click="selectType($item)"
+                >{{$item.name}}</WtwSelectButton>
             </div>
         </div>
         <div class="filter_group">
@@ -19,15 +21,24 @@
 <script>
 import WtwSelectButton from './WtwSelectButton.vue';
 export default {
+    props:{
+        list:{
+            type: Array
+        }
+    },
     components:{
         WtwSelectButton
     },
     data:function(){
         return {
-            list:['全部','冒險','劇情','動作','動畫','歷史','喜劇','奇幻','家庭','家庭','家庭','家庭','家庭','家庭','家庭','家庭','家庭','家庭'],
-            select_item:"全部",
+            select_item: null,
             year_list:['全部','2022','2021','2020','2019','2018','2017','2016','2015'],
             select_year:"全部",
+        }
+    },
+    methods:{
+        selectType:function($select_item){
+            this.select_item = $select_item;
         }
     }
     

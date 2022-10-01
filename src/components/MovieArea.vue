@@ -64,11 +64,14 @@ export default {
             direction: 'horizontal',
             loop: true,
             slidesPerView:'auto',
+            observer:true,
+            observeParents:true,
             // Navigation arrows
             navigation: {
                 nextEl: '.slick-next',
                 prevEl: '.slick-prev',
             },
+
         });
     }
 }

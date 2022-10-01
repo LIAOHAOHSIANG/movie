@@ -11,7 +11,7 @@
 import WtwHeader from './components/WtwHeader.vue';
 
 export default {
-    components: {  WtwHeader }
+  components: {  WtwHeader }
 }
 </script>
 
@@ -29,14 +29,15 @@ body{
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+  &.not-banner{
+    margin-top: 60px;;
+  }
 }
 
-
-/** Page */
-.page{
-  margin-top: 60px;
+a{
+  text-decoration: inherit;
+  color:inherit;
 }
-
 
 
 .section_movie{

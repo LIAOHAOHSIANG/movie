@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import TopicView from '../views/TopicView.vue'
+import MovieView from '../views/MovieView.vue'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ const routes = [
     path: '/topic',
     name: 'topic',
     component: TopicView
+  },
+  {
+    path: '/movie',
+    name: 'movie',
+    component: MovieView
   }
 ]
 
