@@ -1,24 +1,15 @@
-# movie
+# 電影前台
 
-## Project setup
-```
-npm install
-```
+## 使用技術
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+- Vue
+- Nuxt SSR
+- Docker:用於部屬 Google Cloud Run
+- SCSS
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## 主要功能
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- 查看/管理電影與其評論
+- 搜尋電影
+- 會員功能
+- 電影聊天室
