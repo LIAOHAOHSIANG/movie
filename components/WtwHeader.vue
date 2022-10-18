@@ -184,16 +184,16 @@ export default {
                     padding-right: 4px;
                 }
 
-            &.active::after{
-                content: "";
-                position: absolute;
-                top: 32px;
-                left: 0px;
-                width: 100%;
-                height: 4px;
-                background: $primary_color;
-                border-radius: 50px;
-            }
+                &.active::after{
+                    content: "";
+                    position: absolute;
+                    top: 32px;
+                    left: 0px;
+                    width: 100%;
+                    height: 4px;
+                    background: $primary_color;
+                    border-radius: 50px;
+                }
             }
             &:hover li:after{
                 background: rgba(255, 255, 255, 0);

@@ -18,26 +18,25 @@ export default {
 <style lang="scss">
     @import 'assets/sass/variable.scss';
     .wtw-select{
-        &-button{
-        width: 66.36px;
-        height: 28px;
-        background-color: black;
-        color:white;
-        border-radius: 4px;
-        border:0px;
-        cursor: pointer;
-        &.active{
-        background: $primary_color;
+            &-button{
+            width: 66.36px;
+            height: 28px;
+            background-color: black;
+            color:white;
+            border-radius: 4px;
+            border:0px;
+            cursor: pointer;
+            &.active{
+                background: $primary_color;
+            }
         }
-    }
 
-    &:hover &-button.active{
-        background: black;
-    }
+        &:hover &-button.active{
+            background: black;
+        }
 
-    &-button:hover{
-        background: $primary_color !important
-    }
-
+        &-button:hover{
+            background: $primary_color !important
+        }
     }
 </style>

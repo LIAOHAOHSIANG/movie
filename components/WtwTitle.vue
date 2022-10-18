@@ -7,19 +7,19 @@
 <style lang="scss">
     @import 'assets/sass/variable.scss';
     .wtw-title{
-    position: relative;
-    font-size: 16px;
-    line-height: 24px;
-    padding-left:11px;
-    margin:0px;
-    &::before{
-        content: "";
-        position: absolute;
-        height: 24px;
-        width: 3px;
-        left: 0px;
-        background: $primary_color;
-        border-radius: 50px;
-    }
+        position: relative;
+        font-size: 16px;
+        line-height: 24px;
+        padding-left:11px;
+        margin:0px;
+        &::before{
+            content: "";
+            position: absolute;
+            height: 24px;
+            width: 3px;
+            left: 0px;
+            background: $primary_color;
+            border-radius: 50px;
+        }
     }
 </style>

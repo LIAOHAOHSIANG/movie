@@ -95,61 +95,60 @@ export default {
 
     /** Home Page */
     .banner{
-        overflow: hidden;
-        margin-bottom: -71px;
-        &-item{
-            color:white;
-            width: 100vw;
-            height: calc(100vw * 0.55);
-            background-size: 100% auto !important;
-            background-position: center center;
-            &-box{
-                position: absolute;
-                left: 111px;
-                top: 208px;
-            }
-            &-scope{
-                font-size: 70px;
-                font-weight: 700;
-                background: $primary_color;
-                background-clip: text;
-                color: transparent;
-            }
-            &-title{
-                width: 50vw;
-                height: 110px;
-                font-size: 76px;
-                line-height: 110px;
-                font-weight: 500;
-                text-overflow: ellipsis;
-                overflow: hidden;
-            }
-            &-summary{
-                width: 346px;
-                height: 48px;
-                text-overflow: ellipsis;
-                overflow: hidden;
-            }
+      overflow: hidden;
+      margin-bottom: -71px;
+      &-item{
+        color:white;
+        width: 100vw;
+        height: calc(100vw * 0.55);
+        background-size: 100% auto !important;
+        background-position: center center;
+        &-box{
+            position: absolute;
+            left: 111px;
+            top: 208px;
+        }
+        &-scope{
+            font-size: 70px;
+            font-weight: 700;
+            background: $primary_color;
+            background-clip: text;
+            color: transparent;
+        }
+        &-title{
+            width: 50vw;
+            height: 110px;
+            font-size: 76px;
+            line-height: 110px;
+            font-weight: 500;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        &-summary{
+            width: 346px;
+            height: 48px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
 
-            &-button{
-              &_group{
-                  display: flex;
-                  margin-top: 16px;
-              }
+        &-button{
+          &_group{
               display: flex;
-              justify-content: center;
-              align-items: center;
-              width: 160px;
-              margin-right: 15px;
-              border-radius: 13px;
-              height: 42px;
-              background: $primary_color;
-              &.black{
-                background: #1B1E25;
-                border:1px solid $primary_color;
-              }
-            }
-      
+              margin-top: 16px;
+          }
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 160px;
+          margin-right: 15px;
+          border-radius: 13px;
+          height: 42px;
+          background: $primary_color;
+          &.black{
+            background: #1B1E25;
+            border:1px solid $primary_color;
+          }
+        }
       }
       .swiper-pagination{
         position: absolute;
@@ -185,9 +184,8 @@ export default {
     }
 
     .banner .swiper-slide {
-        width: 100vw;
-        height: calc(100vw * 0.55);
+      width: 100vw;
+      height: calc(100vw * 0.55);
     }
-
 </style>
 

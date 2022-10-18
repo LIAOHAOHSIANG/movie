@@ -24,18 +24,18 @@ export default {
 <style lang="scss">
     /** sort */
     .sort{
-    background-color: rgba(104,107,114,0.1);
-    padding: 18px;
-    border-radius: 20px;
-    &_group{
-        max-width: calc( 1280px - 288px );
-        margin-left: auto;
-        margin-right: auto;
-    }
-    &-button{
-        width: 102px;
-        height: 32px;
-        margin-right: 10px;
-    }
+        background-color: rgba(104,107,114,0.1);
+        padding: 18px;
+        border-radius: 20px;
+        &_group{
+            max-width: calc( 1280px - 288px );
+            margin-left: auto;
+            margin-right: auto;
+        }
+        &-button{
+            width: 102px;
+            height: 32px;
+            margin-right: 10px;
+        }
     }
 </style>

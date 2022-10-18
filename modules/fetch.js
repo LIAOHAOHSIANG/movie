@@ -17,9 +17,6 @@ const getMovieGenre = async() => {
 }
 
 
-
-
-
 export {
     getTopRateMovie,
     getMovieGenre

@@ -48,21 +48,21 @@ export default {
 <style lang="scss">
 /** filter */
 .filter{
-  background-color: rgba(104,107,114,0.1);
-  padding: 24px;
-  border-radius: 20px;
-  margin-bottom: 12px;
-  &_group{
-    margin-bottom: 28px;
-    &-content{
-      margin-top: 16px;
+    background-color: rgba(104,107,114,0.1);
+    padding: 24px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    &_group{
+        margin-bottom: 28px;
+        &-content{
+            margin-top: 16px;
+        }
     }
-  }
 
-  &-button{
-    width: 66.36px;
-    height: 28px;
-    margin: 8px 6px;
-  }
+    &-button{
+        width: 66.36px;
+        height: 28px;
+        margin: 8px 6px;
+    }
 }
 </style>

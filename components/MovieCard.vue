@@ -7,7 +7,6 @@
     </div>
 </template>
 
-
 <script>
 export default {
     data:function(){
@@ -17,7 +16,6 @@ export default {
     }
 }
 </script>
-
 
 <style lang="scss">
     @import 'assets/sass/variable.scss';
