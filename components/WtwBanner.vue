@@ -37,7 +37,6 @@ export default {
     getTopRateMovie()
     .then((response)=>{
       const results = response.data.results;
-      console.log(results)
       results.forEach((result)=>{
         this.list.push({
           title:result.title,
@@ -52,7 +51,7 @@ export default {
   },
   methods:{
     getBackground:function($image) {
-      return "linear-gradient(360deg, #1B1E25 0%, rgba(27, 30, 37, 0) 29.22%), radial-gradient(72.5% 427.7% at 96.33% 50%, rgba(27, 30, 37, 0) 39.58%, rgba(27, 30, 37, 0.93) 94.79%),url('https://image.tmdb.org/t/p/original/"+$image+"')";
+      return "linear-gradient(360deg, #1B1E25 0%, rgba(27, 30, 37, 0) 30%), radial-gradient(72.5% 427.7% at 100% 50%, rgba(27, 30, 37, 0) 0%, rgba(27, 30, 37, 0.93) 98.79%),url('https://image.tmdb.org/t/p/original/"+$image+"')";
     },  
     initBanners:function() {
       this.swiper = new Swiper('.banner', {
@@ -96,13 +95,12 @@ export default {
 
     /** Home Page */
     .banner{
-        height: 720px;
         overflow: hidden;
         margin-bottom: -71px;
         &-item{
             color:white;
             width: 100vw;
-            height: 720px;
+            height: calc(100vw * 0.55);
             background-size: 100% auto !important;
             background-position: center center;
             &-box{
@@ -185,14 +183,10 @@ export default {
       margin-right: auto;
       position: relative;
     }
-    .banner{
-      height:  720px;
-      width: 100vw;
-    }
 
     .banner .swiper-slide {
-        width: 100%;
-        height:  720px;
+        width: 100vw;
+        height: calc(100vw * 0.55);
     }
 
 </style>
