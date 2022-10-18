@@ -1,1 +1,11 @@
+
+$breakpoint-mobile: 640px;
+$breakpoint-tablet: 1024px;
+
+
 $primary_color:linear-gradient(91.47deg, #C10171 3.73%, #5C00F2 100%);
+
+//清空瀏覽器樣式
+ul{
+    padding:0px;
+}
