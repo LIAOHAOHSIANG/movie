@@ -1,13 +1,11 @@
 <template>
     <div class="header" :class="{'hideBackground':hideBackground}">
         <div class="header_container container" >
-            <a href="/">
-            <div class="header-logo">
+            <a href="/" class="header-logo">
                 <WtwLogo></WtwLogo>
                 <h2 class="header-logo_title">
                     挖！影
                 </h2>
-            </div>
             </a>
             <div class="header-search">
                 <div class="header-search_searchbar">
@@ -120,6 +118,7 @@ export default {
             justify-content: center;
             align-items: center;
             flex:0 0 auto;
+            margin-left: 16px;
             &_title{
                 text-decoration: none;
                 font-size: 18px;
@@ -134,24 +133,25 @@ export default {
 
         // SearchBar
         &-search{
-            flex:0 0 auto;
+            flex:1 0 auto;
             margin-left: 20px;
+            margin-right: 20px;
             padding:10px;
             display: flex;
             &_searchbar{
-            width: 414px;
-            height: 38px;
-            border:solid 1px gray;
-            color:gray;
-            border-radius: 8px;
-            padding:8.5px 12.5px;
-            display: flex;
-            box-sizing: border-box;
-            &-text{
-                font-size: 14px;
-                line-height: 21px;
-                margin-left: 10px;
-            }
+                width: 100%;
+                height: 38px;
+                border:solid 1px gray;
+                color:gray;
+                border-radius: 8px;
+                padding:8.5px 12.5px;
+                display: flex;
+                box-sizing: border-box;
+                &-text{
+                    font-size: 14px;
+                    line-height: 21px;
+                    margin-left: 10px;
+                }
             }
         }
 
@@ -162,18 +162,26 @@ export default {
             justify-content:flex-end;
             align-items: flex-end;
             height: 100%;
+            @media (max-width:$breakpoint-mobile){
+                display: none;
+            }
             li{
-            color: #ffffff;
-            list-style: none;
-            margin-right:7px;
-            width: 77px;
-            height: 36px;
-            position: relative;
-            text-align: center;
-            cursor: pointer;
+                color: #ffffff;
+                list-style: none;
+                margin-right:7px;
+                width: 77px;
+                height: 36px;
+                position: relative;
+                text-align: center;
+                cursor: pointer;
                 a{
                     color: inherit;
                     text-decoration: inherit;
+                }
+                @media (max-width:$breakpoint-tablet){
+                    width: fit-content;
+                    padding-left: 4px;
+                    padding-right: 4px;
                 }
 
             &.active::after{
@@ -191,13 +199,13 @@ export default {
                 background: rgba(255, 255, 255, 0);
             }
             li:hover::after{
-            content: "";
-            position: absolute;
-            top: 32px;
-            left: 0px;
-            width: 100%;
-            height: 4px;
-            background: $primary_color;
+                content: "";
+                position: absolute;
+                top: 32px;
+                left: 0px;
+                width: 100%;
+                height: 4px;
+                background: $primary_color;
             }
         }
         /* Header Profile */
@@ -206,13 +214,17 @@ export default {
             justify-content: center;
             align-items: center;
             flex:0 0 auto;
+            margin-right: 16px;
+            @media (max-width:$breakpoint-mobile){
+                display: none;
+            }
 
             &_image{
-            background-color: #ffffff;
-            width: 42px;
-            height: 42px;
-            border-radius: 100%;
-            margin: auto;
+                background-color: #ffffff;
+                width: 42px;
+                height: 42px;
+                border-radius: 100%;
+                margin: auto;
             }
         }
     }
