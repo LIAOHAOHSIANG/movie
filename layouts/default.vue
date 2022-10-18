@@ -4,6 +4,11 @@
     <div class="page">
       <nuxt/>
     </div>
+    <footer>
+      <div>
+        挖影 © Code: H-H-Liao  /  Design: K.T
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -50,6 +55,14 @@ a{
   margin-right: auto;
   background-color: rgba(104,107,114,0.1);
   border-radius: 20px;
+}
+
+footer{
+  display: flex;
+  justify-content: center;
+  margin-top:56px;
+  margin-bottom: 15px;
+  color: #686B72;
 }
 
 </style>
