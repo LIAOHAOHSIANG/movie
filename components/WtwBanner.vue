@@ -13,7 +13,7 @@
                   </div>
               </div>
           </div>
-          </div>
+        </div>
       </div>
       <div class="banner-container">
         <div class="swiper-pagination "></div>
@@ -37,7 +37,7 @@ export default {
     getTopRateMovie()
     .then((response)=>{
       const results = response.data.results;
-      results.forEach((result)=>{
+      results.forEach((result,$key)=>{
         this.list.push({
           title:result.title,
           image:result.backdrop_path,
@@ -93,9 +93,7 @@ export default {
 <style lang="scss">
     @import 'assets/sass/variable.scss';
 
-    /** Home Page */
     .banner{
-      overflow: hidden;
       margin-bottom: -71px;
       &-item{
         color:white;
@@ -104,31 +102,31 @@ export default {
         background-size: 100% auto !important;
         background-position: center center;
         &-box{
-            position: absolute;
-            left: 111px;
-            top: 208px;
+          position: absolute;
+          left: 111px;
+          top: 208px;
         }
         &-scope{
-            font-size: 70px;
-            font-weight: 700;
-            background: $primary_color;
-            background-clip: text;
-            color: transparent;
+          font-size: 70px;
+          font-weight: 700;
+          background: $primary_color;
+          background-clip: text;
+          color: transparent;
         }
         &-title{
-            width: 50vw;
-            height: 110px;
-            font-size: 76px;
-            line-height: 110px;
-            font-weight: 500;
-            text-overflow: ellipsis;
-            overflow: hidden;
+          width: 50vw;
+          height: 110px;
+          font-size: 76px;
+          line-height: 110px;
+          font-weight: 500;
+          text-overflow: ellipsis;
+          overflow: hidden;
         }
         &-summary{
-            width: 346px;
-            height: 48px;
-            text-overflow: ellipsis;
-            overflow: hidden;
+          width: 346px;
+          height: 48px;
+          text-overflow: ellipsis;
+          overflow: hidden;
         }
 
         &-button{
@@ -172,8 +170,6 @@ export default {
             background-color: #ffffff;
           }
         }
-
-        
       }
     }
     .banner-container{

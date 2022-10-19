@@ -1,10 +1,12 @@
 <template>
     <div>
         <WtwBanner></WtwBanner>
-        <MovieArea title="熱門電影"></MovieArea>
-        <MovieArea title="熱門韓劇" :is-dark="true"></MovieArea>
-        <MovieArea title="熱門陸劇、台劇"></MovieArea>
-        <MovieArea title="熱門美劇" :is-dark="true"></MovieArea>
+        <div>
+            <MovieArea title="熱門電影"></MovieArea>
+            <MovieArea title="熱門韓劇" :is-dark="true"></MovieArea>
+            <MovieArea title="熱門陸劇、台劇"></MovieArea>
+            <MovieArea title="熱門美劇" :is-dark="true"></MovieArea>
+        </div>
     </div>
 </template>
 

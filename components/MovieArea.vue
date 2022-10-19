@@ -89,6 +89,12 @@ export default {
 
 <style lang="scss">
     .hot_movie{
+        &:first-child{
+            position: relative;
+            top:0px;
+            left: 0px;
+            z-index:10;
+        }
         .movie-swiper{
             display: flex;
             align-items: center;
@@ -135,12 +141,10 @@ export default {
         .swiper{
             &-slide {
                 width: 152px;
-                height:  201px;
+                // height:  201px;
                 margin-right: 16px;
             }
         }
-    }
-    .hot_movie{
         padding: 40px 26px;
         overflow-x: hidden;
         overflow-y: hidden;
@@ -148,6 +152,7 @@ export default {
             background-color: rgba(104, 107, 114, 0.1);
             border-radius: 20px;
         }
+        
         &-title{
             font-size: 20px;
             line-height: 30px;
