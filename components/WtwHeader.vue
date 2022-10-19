@@ -19,7 +19,7 @@
             </div>
             <ul class="header-navbar">
                 <li :class="{'active':target_page == 'movie'}"><a href="/movie">電影</a></li>
-                <li  :class="{'active':target_page == 'drama'}">戲劇</li>
+                <li  :class="{'active':target_page == 'drama'}"><a href="/drama">戲劇</a></li>
                 <li  :class="{'active':target_page == 'topic'}"><a href="topic">主題館</a></li>
                 <li  :class="{'active':target_page == 'my'}">我的片單</li>
             </ul>

@@ -21,6 +21,10 @@ const getMovieGenre = async() => {
     return await axios.get(getUrl("/genre/movie/list"))
 }
 
+const getDramaGenre = async() => {
+    return await axios.get(getUrl("/genre/tv/list"))
+}
+
 const getDiscoverMovie = async($genre_ids,$year = 0) => {
     const $parms = Array();
     $parms['with_genres'] = $genre_ids;
@@ -31,8 +35,20 @@ const getDiscoverMovie = async($genre_ids,$year = 0) => {
     return await axios.get(getUrl("/discover/movie",$parms))
 }
 
+const getDiscoverDrama = async($genre_ids,$year = 0) => {
+    const $parms = Array();
+    $parms['with_genres'] = $genre_ids;
+    if($year > 0){
+        $parms['first_air_date_year'] = $year;
+    }
+    
+    return await axios.get(getUrl("/discover/tv",$parms))
+}
+
 export {
     getTopRateMovie,
     getMovieGenre,
-    getDiscoverMovie
+    getDramaGenre,
+    getDiscoverMovie,
+    getDiscoverDrama
 }
