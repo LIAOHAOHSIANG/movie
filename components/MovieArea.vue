@@ -13,17 +13,14 @@
                 <div class="swiper">
                     <div class="swiper-wrapper">
                         <!-- Slides -->
-                        <div class="swiper-slide"> <MovieCard></MovieCard></div>
-                        <div class="swiper-slide"> <MovieCard></MovieCard></div>
-                        <div class="swiper-slide"> <MovieCard></MovieCard></div>
-                        <div class="swiper-slide"> <MovieCard></MovieCard></div>
-                        <div class="swiper-slide"> <MovieCard></MovieCard></div>
-                        <div class="swiper-slide"> <MovieCard></MovieCard></div>
-                        <div class="swiper-slide"> <MovieCard></MovieCard></div>
-                        <div class="swiper-slide"> <MovieCard></MovieCard></div>
-                        <div class="swiper-slide"> <MovieCard></MovieCard></div>
-                        <div class="swiper-slide"> <MovieCard></MovieCard></div>
-                        <div class="swiper-slide"> <MovieCard></MovieCard></div>
+                        <div v-for="($item) in list" :key="$item.id" class="swiper-slide">
+                            <MovieCard
+                            :title="$item.title"
+                            :score="$item.vote_average"
+                            :link="'/movie/'+$item.id"
+                            :img_url="'https://image.tmdb.org/t/p/w220_and_h330_face/'+$item.backdrop_path"
+                            ></MovieCard>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -40,6 +37,7 @@
 import Swiper from 'swiper'
 import MovieCard from '/components/MovieCard.vue';
 import 'swiper/css/swiper.css';
+import { getPopularMovie } from '/modules/fetch.js'
 
 export default {
     components: {
@@ -56,7 +54,21 @@ export default {
     },
     methods: {
     },
+    data:function(){
+        return {
+            list:[]
+        }
+    },
     mounted:function() {
+        getPopularMovie()
+        .then((response) => {
+            console.log("更新成功");
+            var $data = response.data;
+            this.list = $data.results;
+            console.log(this.list);
+
+        });
+
         new Swiper('.swiper', {
             // Optional parameters
             direction: 'horizontal',
