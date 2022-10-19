@@ -16,6 +16,11 @@ const getMovie = async($movie_id) => {
     return await axios.get(getUrl("/movie/"+$movie_id))
 }
 
+const getDrama = async($drama_id) => {
+    return await axios.get(getUrl("/tv/"+$drama_id))
+}
+
+
 const getTopRateMovie = async() => {
     return await axios.get(getUrl("/movie/popular"))
 }
@@ -50,6 +55,7 @@ const getDiscoverDrama = async($genre_ids,$year = 0) => {
 
 export {
     getMovie,
+    getDrama,
     getTopRateMovie,
     getMovieGenre,
     getDramaGenre,
