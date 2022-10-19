@@ -1,5 +1,5 @@
 <template>
-    <button class="wtw-select-button" :class="{'active':active}"  >
+    <button @click="$emit('click')" class="wtw-select-button" :class="{'active':active}"  >
         <slot></slot>
     </button>
 </template>

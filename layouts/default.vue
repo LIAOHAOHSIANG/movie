@@ -35,7 +35,8 @@ export default {
     margin-left: auto;
     margin-right: auto;
     &.not-banner{
-      margin-top: 60px;;
+      margin-top: 60px;
+      padding-top: 24px;
     }
   }
 

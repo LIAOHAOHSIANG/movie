@@ -1,15 +1,24 @@
 <template>
     <div class="container not-banner">
-        <filter-div :list="genre_list"></filter-div>
-        <movie-card></movie-card>
+        <filter-div v-if="genre_list.length>0" :list="genre_list" 
+            v-on:onChangeType="changeType"
+            v-on:onChangeYear="changeYear"></filter-div>
+        <div class="card_gird">
+            <div v-for="($item) in list" :key="$item.id" class="card_gird-item">
+                <movie-card 
+                :title="$item.title"
+                :score="$item.vote_average"
+                :url="'https://image.tmdb.org/t/p/w220_and_h330_face/'+$item.backdrop_path"
+                ></movie-card>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
 import FilterDiv from '/components/WtwFilter.vue'
 import MovieCard from '/components/MovieCard.vue'
-import { getMovieGenre } from '/modules/fetch.js'
-
+import { getMovieGenre,getDiscoverMovie } from '/modules/fetch.js'
 
 export default {
     name: 'MovieView',
@@ -19,15 +28,51 @@ export default {
     },
     data:function () {
         return {
-            genre_list:[]
+            genre_list:[],
+            list:[],
+            genre_id:null,
+            year:null
         }
     },
     mounted: function () {
         getMovieGenre()
         .then( (response) => {
             this.genre_list =  response.data.genres;
-            console.log(this.genre_list);
         });
+    },
+    methods:{
+        refreshMovie:function(){
+            getDiscoverMovie(this.genre_id,this.year)
+            .then( (response) => {
+                console.log("更新成功");
+                var $data = response.data;
+                this.list = $data.results;
+
+            });
+        },
+        changeYear:function($value){
+            this.year = $value;
+            this.refreshMovie();
+        },
+        changeType:function($value){
+            this.genre_id = $value;
+            this.refreshMovie();
+        }
     }
 }
 </script>
+
+<style lang="scss">
+    .card_gird{
+        display: flex;
+        flex-wrap: wrap;
+        padding-left: 16px;
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: center;
+        &-item{
+            margin-right: 16px;
+            margin-bottom: 34px;
+        }
+    }
+</style>

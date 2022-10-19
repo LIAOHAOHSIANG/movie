@@ -4,41 +4,59 @@
             <WtwTitle>類型</WtwTitle>
             <div class="wtw-select filter_group-content">
                 <WtwSelectButton v-for="($item,$key) in list" :key="$key" 
-                class="filter-button" :active="select_item && $item.id == select_item.id"
-                v-click="selectType($item)"
+                class="filter-button" :active="select_item && $item.id === select_item.id"
+                v-on:click="selectType($item)"
                 >{{$item.name}}</WtwSelectButton>
             </div>
         </div>
         <div class="filter_group">
             <WtwTitle>年份</WtwTitle>
             <div class="wtw-select  filter_group-content">
-                <WtwSelectButton v-for="($item,$key) in year_list" :key="$key"  class="filter-button" :active="$item == select_year" >{{$item}}</WtwSelectButton>
+                <WtwSelectButton v-for="($item,$key) in year_list" :key="$key"  
+                class="filter-button" :active="$item == select_year" 
+                v-on:click="selectYear($item)"
+                >{{$item}}</WtwSelectButton>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import WtwTitle from './WtwTitle.vue'
 import WtwSelectButton from './WtwSelectButton.vue';
+
 export default {
     props:{
         list:{
             type: Array
-        }
+        },
     },
     components:{
-        WtwSelectButton
+        WtwSelectButton,
+        WtwTitle
     },
     data:function(){
         return {
             select_item: null,
-            year_list:['全部','2022','2021','2020','2019','2018','2017','2016','2015'],
+            year_list:['全部'],
             select_year:"全部",
+        }
+    },
+    mounted:function(){
+        this.select_item = this.list[0] ?? null;
+        this.$emit('onChangeType', this.select_item.id);
+        for(var $y = 2022;$y >= 1998; $y--){
+            this.year_list.push($y);
         }
     },
     methods:{
         selectType:function($select_item){
+            this.$emit('onChangeType', $select_item.id);
             this.select_item = $select_item;
+        },
+        selectYear:function($select_year){
+            this.$emit('onChangeYear', $select_year);
+            this.select_year = $select_year;
         }
     }
     
