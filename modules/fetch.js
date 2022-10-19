@@ -12,10 +12,13 @@ const getUrl = ($url,$parms = []) => {
     return api_url+$url+"?api_key="+api_key+"&language=zh-TW&region=tw"+$parms_text;
 }
 
+const getMovie = async($movie_id) => {
+    return await axios.get(getUrl("/movie/"+$movie_id))
+}
+
 const getTopRateMovie = async() => {
     return await axios.get(getUrl("/movie/popular"))
 }
-
 
 const getMovieGenre = async() => {
     return await axios.get(getUrl("/genre/movie/list"))
@@ -46,6 +49,7 @@ const getDiscoverDrama = async($genre_ids,$year = 0) => {
 }
 
 export {
+    getMovie,
     getTopRateMovie,
     getMovieGenre,
     getDramaGenre,

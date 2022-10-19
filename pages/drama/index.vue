@@ -8,7 +8,7 @@
                 <movie-card 
                 :title="$item.name"
                 :score="$item.vote_average"
-                :url="'https://image.tmdb.org/t/p/w220_and_h330_face/'+$item.backdrop_path"
+                :img_url="'https://image.tmdb.org/t/p/w220_and_h330_face/'+$item.backdrop_path"
                 ></movie-card>
             </div>
         </div>

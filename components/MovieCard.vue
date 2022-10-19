@@ -1,10 +1,10 @@
 <template>
-    <div class="movie-card">
-        <div class="movie-card_poster" :style="{'background-image' : 'linear-gradient(180deg, rgba(22, 22, 22, 0) 30.58%, rgba(22, 22, 22, 0.98) 100%), url('+url+')'}">
+    <a :href="link" class="movie-card">
+        <div class="movie-card_poster" :style="{'background-image' : 'linear-gradient(180deg, rgba(22, 22, 22, 0) 30.58%, rgba(22, 22, 22, 0.98) 100%), url('+img_url+')'}">
             <div class="movie-card_score">{{score}}</div>
         </div>
         <div class="movie-card_title">{{title}}</div>
-    </div>
+    </a>
 </template>
 
 <script>
@@ -16,7 +16,10 @@ export default {
         score:{
             type: Number
         }, 
-        url:{
+        link:{
+            type: String,
+        },
+        img_url:{
             type: String,
             default:"https://i0.wp.com/bloody-disgusting.com/wp-content/uploads/2019/02/jordan-peele-us-poster.jpg?ssl=1"
         }
@@ -40,6 +43,7 @@ export default {
         display: flex;
         flex-wrap: wrap;
         &-card{
+            display: block;
             width: 152px;
             height: 226px;
 
