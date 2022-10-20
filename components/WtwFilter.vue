@@ -1,22 +1,36 @@
 <template>
-    <div class="filter">
-        <div class="filter_group">
-            <WtwTitle>類型</WtwTitle>
-            <div class="wtw-select filter_group-content">
-                <WtwSelectButton v-for="($item,$key) in list" :key="$key" 
-                class="filter-button" :active="select_item && $item.id === select_item.id"
-                v-on:click="selectType($item)"
-                >{{$item.name}}</WtwSelectButton>
+    <div>
+        <div class="filter">
+            <div class="filter_group">
+                <WtwTitle>類型</WtwTitle>
+                <div class="wtw-select filter_group-content">
+                    <WtwSelectButton v-for="($item,$key) in list" :key="$key" 
+                    class="filter-button" :active="select_item && $item.id === select_item.id"
+                    v-on:click="selectType($item)"
+                    >{{$item.name}}</WtwSelectButton>
+                </div>
+            </div>
+            <div class="filter_group">
+                <WtwTitle>年份</WtwTitle>
+                <div class="wtw-select  filter_group-content">
+                    <WtwSelectButton v-for="($item,$key) in year_list" :key="$key"  
+                    class="filter-button" :active="$item == select_year" 
+                    v-on:click="selectYear($item)"
+                    >{{$item}}</WtwSelectButton>
+                </div>
+            </div>
+            <div class="filter_group">
+                <WtwTitle>評分</WtwTitle>
+                <div class="wtw-select  filter_group-content">
+                    <input type="range"></input>
+                </div>
             </div>
         </div>
-        <div class="filter_group">
-            <WtwTitle>年份</WtwTitle>
-            <div class="wtw-select  filter_group-content">
-                <WtwSelectButton v-for="($item,$key) in year_list" :key="$key"  
-                class="filter-button" :active="$item == select_year" 
-                v-on:click="selectYear($item)"
-                >{{$item}}</WtwSelectButton>
-            </div>
+        <div class="filter">
+            <wtw-button>人氣</wtw-button>
+            <wtw-button>評分</wtw-button>
+            <wtw-button>上映日</wtw-button>
+            <wtw-button>片名</wtw-button>
         </div>
     </div>
 </template>
@@ -24,6 +38,7 @@
 <script>
 import WtwTitle from './WtwTitle.vue'
 import WtwSelectButton from './WtwSelectButton.vue';
+import WtwButton from './WtwButton.vue';
 
 export default {
     props:{
@@ -33,7 +48,8 @@ export default {
     },
     components:{
         WtwSelectButton,
-        WtwTitle
+        WtwTitle,
+        WtwButton
     },
     data:function(){
         return {
