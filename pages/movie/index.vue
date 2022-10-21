@@ -13,6 +13,9 @@
                 ></movie-card>
             </div>
         </div>
+        <div class="loading">
+            <wtw-button @click="getNextPage()">載入更多</wtw-button>
+        </div>
     </div>
 </template>
 
@@ -20,19 +23,22 @@
 import FilterDiv from '/components/WtwFilter.vue'
 import MovieCard from '/components/MovieCard.vue'
 import { getMovieGenre,getDiscoverMovie } from '/modules/fetch.js'
+import WtwButton from '/components/WtwButton.vue'
 
 export default {
     name: 'MovieView',
     components: {
         FilterDiv,
         MovieCard,
+        WtwButton
     },
     data:function () {
         return {
             genre_list:[],
             list:[],
             genre_id:null,
-            year:null
+            year:null,
+            page:1
         }
     },
     mounted: function () {
@@ -48,9 +54,22 @@ export default {
                 console.log("更新成功");
                 var $data = response.data;
                 this.list = $data.results;
-
+                this.page = this.page + 1;
             });
         },
+        getNextPage:function(){
+            getDiscoverMovie(this.genre_id,this.year,this.page)
+            .then( (response) => {
+                console.log("更新成功2");
+                var $data = response.data;
+                console.log($data);
+                $data.results.forEach(element => {
+                    console.log(element);
+                    this.list.push(element);
+                });
+                this.page = this.page + 1;
+            });
+        }, 
         changeYear:function($value){
             this.year = $value;
             this.refreshMovie();
@@ -74,6 +93,17 @@ export default {
         &-item{
             margin-right: 16px;
             margin-bottom: 34px;
+        }
+    }
+    .loading{
+        display: flex;
+        justify-content: center;
+        margin-top: 17px;
+        margin-bottom: 17px;
+        .wtw-button{
+            width: 300px;
+            height: 52px;
+            cursor: pointer;
         }
     }
 </style>

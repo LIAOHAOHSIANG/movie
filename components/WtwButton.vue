@@ -1,5 +1,5 @@
 <template>
-    <button class="wtw-button">
+    <button @click="$emit('click')" class="wtw-button">
         <slot></slot>
     </button>
 </template>

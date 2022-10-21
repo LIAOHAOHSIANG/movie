@@ -33,13 +33,17 @@ const getDramaGenre = async() => {
     return await axios.get(getUrl("/genre/tv/list"))
 }
 
-const getDiscoverMovie = async($genre_ids,$year = 0) => {
+const getDiscoverMovie = async($genre_ids,$year = 0,$page = 1) => {
     const $parms = Array();
     $parms['with_genres'] = $genre_ids;
     if($year > 0){
         $parms['year'] = $year;
     }
-    
+
+    if($page > 1){
+        $parms['page'] = $page;
+    }
+
     return await axios.get(getUrl("/discover/movie",$parms))
 }
 
