@@ -82,27 +82,5 @@ export default {
 </script>
 
 <style lang="scss">
-    .card_gird{
-        display: flex;
-        flex-wrap: wrap;
-        padding-left: 16px;
-        margin-left: auto;
-        margin-right: auto;
-        justify-content: center;
-        &-item{
-            margin-right: 16px;
-            margin-bottom: 34px;
-        }
-    }
-    .loading{
-        display: flex;
-        justify-content: center;
-        margin-top: 17px;
-        margin-bottom: 17px;
-        .wtw-button{
-            width: 300px;
-            height: 52px;
-            cursor: pointer;
-        }
-    }
+    @import 'assets/sass/style.scss';
 </style>
