@@ -8,14 +8,14 @@
                 </h2>
             </a>
             <div class="header-search">
-                <a href="/search/關鍵字" class="header-search_searchbar">
+                <div class="header-search_searchbar">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M17.3501 16.5818L17.3501 16.5817L14.7575 13.9946C16.0812 12.535 16.8888 10.5988 16.8888 8.47755C16.8888 3.94505 13.2021 0.25835 8.66955 0.25835C4.13706 0.25835 0.449512 3.94504 0.449512 8.47755C0.449512 13.0101 4.13705 16.6976 8.66955 16.6976C10.592 16.6976 12.3624 16.0341 13.7637 14.9243L16.3902 17.5435L16.3903 17.5435C16.5233 17.6756 16.6972 17.7418 16.8701 17.7418C17.0437 17.7418 17.2186 17.6758 17.3509 17.5417C17.6164 17.2763 17.6153 16.847 17.3501 16.5818ZM1.80786 8.47755C1.80786 4.69405 4.88604 1.6167 8.66955 1.6167C12.4522 1.6167 15.5304 4.69405 15.5304 8.47755C15.5304 12.2611 12.4522 15.3392 8.66955 15.3392C4.88605 15.3392 1.80786 12.2611 1.80786 8.47755Z" fill="#686B72" stroke="#686B72" stroke-width="0.1"/>
                     </svg>
                     <div class="header-search_searchbar-text">
-                    搜尋劇名 / 演員
+                        <input v-on:keyup.enter="search()" v-model="search_text" type="text" placeholder="搜尋劇名 / 演員" />
                     </div>
-                </a>
+                </div>
             </div>
             <ul class="header-navbar">
                 <li :class="{'active':target_page == 'movie'}"><a href="/movie">電影</a></li>
@@ -47,7 +47,8 @@ export default {
         return {
             target_page:"",
             hideBackground: false,
-            alwaysHideBackground:false
+            alwaysHideBackground:false,
+            search_text:""
         }
     },
     mounted:function() {
@@ -60,6 +61,9 @@ export default {
         }
     },
     methods:{
+        search($value) {
+            this.$router.push('/search/'+this.search_text)
+        },
         checkPath() {
             switch(this.$route.path){
                 case "/":
@@ -155,6 +159,17 @@ export default {
                     font-size: 14px;
                     line-height: 21px;
                     margin-left: 10px;
+                    width: 100%;
+                    input{
+                        color:white;
+                        width: 100%;
+                        background: rgba(255, 255, 255, 0);
+                        border:0px;
+                        &:focus{
+                            border: 0px;
+                            outline: 0px;
+                        }
+                    }
                 }
             }
         }
