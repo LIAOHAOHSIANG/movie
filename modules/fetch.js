@@ -68,6 +68,39 @@ const getPopularMovie = async() => {
     return await axios.get(getUrl("/discover/movie",$parms))
 }
 
+const getSearchAll = async($query,$page = 1) => {
+    const $parms = Array();
+    $parms['query'] = $query;
+
+    if($page > 1){
+        $parms['page'] = $page;
+    }
+
+    return await axios.get(getUrl("/search/multi", $parms))
+}
+
+const getSearchMovie = async($query,$page = 1) => {
+    const $parms = Array();
+    $parms['query'] = $query;
+
+    if($page > 1){
+        $parms['page'] = $page;
+    }
+
+    return await axios.get(getUrl("/search/movie", $parms))
+}
+
+const getSearchDrama = async($query,$page = 1) => {
+    const $parms = Array();
+    $parms['query'] = $query;
+
+    if($page > 1){
+        $parms['page'] = $page;
+    }
+
+    return await axios.get(getUrl("/search/tv", $parms))
+}
+
 export {
     getMovie,
     getDrama,
@@ -76,5 +109,8 @@ export {
     getDramaGenre,
     getDiscoverMovie,
     getDiscoverDrama,
-    getPopularMovie
+    getPopularMovie,
+    getSearchAll,
+    getSearchMovie,
+    getSearchDrama
 }
