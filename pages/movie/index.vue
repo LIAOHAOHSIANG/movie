@@ -60,7 +60,6 @@ export default {
         getNextPage:function(){
             getDiscoverMovie(this.genre_id,this.year,this.page)
             .then( (response) => {
-                console.log("更新成功2");
                 var $data = response.data;
                 console.log($data);
                 $data.results.forEach(element => {

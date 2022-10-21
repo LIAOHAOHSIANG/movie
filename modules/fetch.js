@@ -47,11 +47,15 @@ const getDiscoverMovie = async($genre_ids,$year = 0,$page = 1) => {
     return await axios.get(getUrl("/discover/movie",$parms))
 }
 
-const getDiscoverDrama = async($genre_ids,$year = 0) => {
+const getDiscoverDrama = async($genre_ids,$year = 0,$page = 1) => {
     const $parms = Array();
     $parms['with_genres'] = $genre_ids;
     if($year > 0){
         $parms['first_air_date_year'] = $year;
+    }
+
+    if($page > 1){
+        $parms['page'] = $page;
     }
     
     return await axios.get(getUrl("/discover/tv",$parms))
