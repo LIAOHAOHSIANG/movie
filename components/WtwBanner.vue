@@ -103,6 +103,7 @@ export default {
     }
 
     .banner{
+      overflow: hidden;
       margin-bottom: -71px;
       @media (max-width:$breakpoint-mobile){
         margin-top: 60px;
