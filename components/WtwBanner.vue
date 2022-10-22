@@ -8,7 +8,7 @@
                   <div class="banner-item-title">{{$item.title}}</div>
                   <div class="banner-item-summary">{{$item.overview}}</div>
                   <div class="banner-item-button_group">
-                      <div class="banner-item-button black">更多資訊</div>
+                      <div class="banner-item-button more">更多資訊</div>
                       <div class="banner-item-button">加入片單</div>
                   </div>
               </div>
@@ -38,12 +38,14 @@ export default {
     .then((response)=>{
       const results = response.data.results;
       results.forEach((result,$key)=>{
-        this.list.push({
-          title:result.title,
-          image:result.backdrop_path,
-          overview:result.overview,
-          vote_average:result.vote_average
-        });
+        if($key<10){
+          this.list.push({
+            title:result.title,
+            image:result.backdrop_path,
+            overview:result.overview,
+            vote_average:result.vote_average
+          });
+        }
       
       })
     })
@@ -93,18 +95,41 @@ export default {
 <style lang="scss">
     @import 'assets/sass/variable.scss';
 
+    /**
+      * 計算寬度乘以百分比
+      */
+    @function getWidthPercentage($percentage) {
+      @return calc(100vw * 0.55 * $percentage);
+    }
+
     .banner{
       margin-bottom: -71px;
+      @media (max-width:$breakpoint-mobile){
+        margin-top: 60px;
+      }
+      &-container{
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        top:0px;
+        left: 0px;;
+      }
       &-item{
         color:white;
         width: 100vw;
-        height: calc(100vw * 0.55);
+        height: getWidthPercentage(1);
         background-size: 100% auto !important;
-        background-position: center center;
+        background-position: center;
         &-box{
-          position: absolute;
-          left: 111px;
-          top: 208px;
+          left: calc(100vw *0.1);
+          top: getWidthPercentage(0.25);
+          @media (max-width:$breakpoint-tablet){
+            top: getWidthPercentage(0.2);
+          }
+          @media (max-width:$breakpoint-mobile){
+            top: getWidthPercentage(0.13);
+          }
         }
         &-scope{
           font-size: 70px;
@@ -112,27 +137,46 @@ export default {
           background: $primary_color;
           background-clip: text;
           color: transparent;
+          @media (max-width:$breakpoint-tablet){
+            font-size: 60px;
+          }
+          @media (max-width:$breakpoint-mobile){
+            font-size: 30px;
+          }
         }
         &-title{
-          width: 50vw;
+          width: 65vw;
           height: 110px;
           font-size: 76px;
-          line-height: 110px;
           font-weight: 500;
           text-overflow: ellipsis;
           overflow: hidden;
+          @media (max-width:$breakpoint-tablet){
+            font-size: 55px;
+            height: 80px;
+          }
+          @media (max-width:$breakpoint-mobile){
+            font-size: 38px;
+            height: 45px;
+          }
         }
         &-summary{
           width: 346px;
           height: 48px;
           text-overflow: ellipsis;
           overflow: hidden;
+          @media (max-width:$breakpoint-mobile){
+            display: none;
+          }
         }
 
         &-button{
           &_group{
-              display: flex;
-              margin-top: 16px;
+            display: flex;
+            margin-top: 18px;
+            @media (max-width:$breakpoint-mobile){
+              margin-top: 7px;
+            }
           }
           display: flex;
           justify-content: center;
@@ -142,15 +186,28 @@ export default {
           border-radius: 13px;
           height: 42px;
           background: $primary_color;
-          &.black{
+          @media (max-width:$breakpoint-mobile){
+            width: 103px;
+            height: 27px;
+            font-size: 14px;
+            padding:3px;
+          }
+          &.more{
             background: #1B1E25;
             border:1px solid $primary_color;
+            @media (max-width:$breakpoint-mobile){
+              display: none;
+            }
           }
         }
       }
+      .swiper-slide {
+        width: 100vw;
+        height: calc(100vw * 0.55);
+      }
       .swiper-pagination{
         position: absolute;
-        bottom: 119px;
+        bottom: getWidthPercentage(0.1);
         top:  auto;
         left:auto;
         right: 39.88px;
@@ -172,16 +229,5 @@ export default {
         }
       }
     }
-    .banner-container{
-      max-width: 1200px;
-      margin-left: auto;
-      margin-right: auto;
-      position: relative;
-    }
 
-    .banner .swiper-slide {
-      width: 100vw;
-      height: calc(100vw * 0.55);
-    }
 </style>
-
