@@ -8,8 +8,15 @@
                   <div class="banner-item-title">{{$item.title}}</div>
                   <div class="banner-item-summary">{{$item.overview}}</div>
                   <div class="banner-item-button_group">
-                      <div class="banner-item-button more">更多資訊</div>
-                      <div class="banner-item-button">加入片單</div>
+                    <wtw-button :light="false"  @click="$router.push('/movie/'+$item.id)">
+                      更多資訊
+                    </wtw-button>
+                    <wtw-button v-if="!inPlayList('movie', $item.id)" :light="true" @click="addPlayList('movie', $item.id)">
+                      加入片單
+                    </wtw-button>
+                    <wtw-button v-else :light="false" @click="removePlayList('movie', $item.id)">
+                      移出片單
+                    </wtw-button>
                   </div>
               </div>
           </div>
@@ -25,12 +32,15 @@
 import Swiper from 'swiper'
 import 'swiper/css/swiper.css';
 import { getTopRateMovie } from '/modules/fetch.js';
+import WtwButton from './WtwButton.vue';
 
 export default {
+  components: { WtwButton },
   data:function() {
     return {
       list:[],
-      swiper:null
+      swiper:null,
+      play_list:[]
     }
   }, 
   mounted:function() {
@@ -40,6 +50,7 @@ export default {
       results.forEach((result,$key)=>{
         if($key<10){
           this.list.push({
+            id:result.id,
             title:result.title,
             image:result.backdrop_path,
             overview:result.overview,
@@ -52,6 +63,30 @@ export default {
     this.initBanners();
   },
   methods:{
+    inPlayList:function($type, $id) {
+      const $list = this.play_list.filter(($item)=>{
+        return $item.type == $type && $item.id == $id;
+      })
+      if($list.length>0){
+        return true;
+      }
+
+      return false;
+    },
+    addPlayList:function($type, $id) {
+      this.play_list.push({
+        'type':$type,
+        'id':$id
+      });
+      alert("成功加入片單");
+    },
+    removePlayList:function($type, $id) {
+      this.play_list.forEach(($item,$key)=>{
+        if($item.type == $type && $item.id == $id){
+          this.play_list.splice($key,1)
+        }
+      });
+    },
     getBackground:function($image) {
       return "linear-gradient(360deg, #1B1E25 0%, rgba(27, 30, 37, 0) 30%), radial-gradient(72.5% 427.7% at 100% 50%, rgba(27, 30, 37, 0) 0%, rgba(27, 30, 37, 0.93) 98.79%),url('https://image.tmdb.org/t/p/original/"+$image+"')";
     },  
@@ -179,26 +214,10 @@ export default {
             @media (max-width:$breakpoint-mobile){
               margin-top: 7px;
             }
-          }
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 160px;
-          margin-right: 15px;
-          border-radius: 13px;
-          height: 42px;
-          background: $primary_color;
-          @media (max-width:$breakpoint-mobile){
-            width: 103px;
-            height: 27px;
-            font-size: 14px;
-            padding:3px;
-          }
-          &.more{
-            background: #1B1E25;
-            border:1px solid $primary_color;
-            @media (max-width:$breakpoint-mobile){
-              display: none;
+            .wtw-button{
+              width: 160px;
+              height: 42px;
+              margin-right: 15px;
             }
           }
         }
