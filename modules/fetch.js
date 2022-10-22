@@ -13,7 +13,10 @@ const getUrl = ($url,$parms = []) => {
 }
 
 const getMovie = async($movie_id) => {
-    return await axios.get(getUrl("/movie/"+$movie_id))
+    const $parms = Array();
+    $parms['append_to_response'] = 'videos,keywords,watch/providers';
+
+    return await axios.get(getUrl("/movie/"+$movie_id,$parms))
 }
 
 const getDrama = async($drama_id) => {
