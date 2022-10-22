@@ -88,6 +88,7 @@ export default {
 </script>
 
 <style lang="scss">
+    @import 'assets/sass/variable.scss';
     .hot_movie{
         &:first-child{
             position: relative;
@@ -104,37 +105,48 @@ export default {
             margin-left: auto;
             margin-right: auto;
             overflow: hidden;
-        }
-        .slick-prev{
-            background-color: #686B72;
-            width: 50px;
-            height: 50px;
-            border-radius: 13px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            &:hover{
-                background-color: #686B72;
-            }
-            &::before{
-                content: "";
+            @media (max-width:$breakpoint-tablet){
+                width: 100%;
             }
         }
-        .slick-next{
-            background-color: #686B72;
-            width: 50px;
-            height: 50px;
-            border-radius: 13px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            &:hover{
+        .slick{
+            &-prev{
                 background-color: #686B72;
+                width: 50px;
+                height: 50px;
+                border-radius: 13px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                &:hover{
+                    background-color: #686B72;
+                }
+                &::before{
+                    content: "";
+                }
+                @media (max-width:$breakpoint-tablet){
+                    display: none;
+                }
             }
-            &::before{
-                content: "";
+            &-next{
+                background-color: #686B72;
+                width: 50px;
+                height: 50px;
+                border-radius: 13px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                &:hover{
+                    background-color: #686B72;
+                }
+                &::before{
+                    content: "";
+                }
+                @media (max-width:$breakpoint-tablet){
+                    display: none;
+                }
             }
         }
 
@@ -148,9 +160,15 @@ export default {
         padding: 40px 26px;
         overflow-x: hidden;
         overflow-y: hidden;
+        @media (max-width:$breakpoint-tablet){
+            padding: 30px 16px;
+        }
         &.dark_background{
             background-color: rgba(104, 107, 114, 0.1);
             border-radius: 20px;
+            @media (max-width:$breakpoint-tablet){
+                border-radius: 0px;
+            }
         }
         
         &-title{

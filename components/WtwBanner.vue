@@ -106,6 +106,7 @@ export default {
       margin-bottom: -71px;
       @media (max-width:$breakpoint-mobile){
         margin-top: 60px;
+        margin-bottom: 0px;
       }
       &-container{
         max-width: 1200px;
