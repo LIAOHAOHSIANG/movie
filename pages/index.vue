@@ -2,10 +2,10 @@
     <div>
         <WtwBanner></WtwBanner>
         <div>
-            <MovieArea title="熱門電影" :list="hot_movie_list"></MovieArea>
-            <MovieArea title="熱門韓劇" type="drama" :list="hot_korean_drama_list" :is-dark="true"></MovieArea>
-            <MovieArea title="熱門陸劇、台劇"  type="drama" :list="hot_china_drama_list"></MovieArea>
-            <MovieArea title="熱門美劇"  type="drama" :list="hot_america_drama_list" :is-dark="true"></MovieArea>
+            <MovieArea title="熱門電影" index="1" :list="hot_movie_list"></MovieArea>
+            <MovieArea title="熱門韓劇" index="2" type="drama" :list="hot_korean_drama_list" :is-dark="true"></MovieArea>
+            <MovieArea title="熱門陸劇、台劇" index="3" type="drama" :list="hot_china_drama_list"></MovieArea>
+            <MovieArea title="熱門美劇"  index="4" type="drama" :list="hot_america_drama_list" :is-dark="true"></MovieArea>
         </div>
     </div>
 </template>
