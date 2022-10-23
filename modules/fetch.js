@@ -20,7 +20,11 @@ const getMovie = async($movie_id) => {
 }
 
 const getDrama = async($drama_id) => {
-    return await axios.get(getUrl("/tv/"+$drama_id))
+    const $parms = Array();
+    $parms['append_to_response'] = 'videos,keywords,watch/providers,recommendations,reviews,credits';
+
+
+    return await axios.get(getUrl("/tv/"+$drama_id,$parms))
 }
 
 

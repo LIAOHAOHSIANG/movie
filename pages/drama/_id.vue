@@ -1,14 +1,15 @@
 <template>
-    <div class="container not-banner">
-        戲劇詳細頁面
-        {{model}}
+    <div>
+        <movie-summary  v-if="model" :model="model" type="drama"></movie-summary>
     </div>
 </template>
 
 <script>
+import MovieSummary from '/components/MovieSummary.vue';
 import { getDrama } from '/modules/fetch.js'
 
 export default {
+    components: { MovieSummary },
     data:function(){
         return {
             drama_id:null,
@@ -20,7 +21,6 @@ export default {
         getDrama(this.drama_id)
         .then( (response) => {
             var $data = response.data;
-            console.log($data);
             this.model = $data;
         });
     }
