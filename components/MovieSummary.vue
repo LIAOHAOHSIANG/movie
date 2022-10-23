@@ -47,7 +47,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="model" class="movie_information">
+        <div v-if="model && review_list.length > 0" class="movie_information">
             <div class="review">
                 
                 <div class="review_item"  v-for="$item in review_list" :key="$item.id">
@@ -69,7 +69,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="model" class="movie_information recommend">
+        <div v-if="model && recommend_list.length > 0" class="movie_information recommend">
             <movie-area :list="recommend_list" title="相關影片"></movie-area>
         </div>        
         <div>
@@ -116,10 +116,14 @@ export default {
                 this.video = element.key
             }
         });
-        if(this.type == 'movie'){
-            this.provide_list = this.model['watch/providers'].results.TW.rent;
-        }else{
-            this.provide_list = this.model['watch/providers'].results.TW.flatrate;
+        try{
+            if(this.type == 'movie'){
+                this.provide_list = this.model['watch/providers'].results.TW.rent;
+            }else{
+                this.provide_list = this.model['watch/providers'].results.TW.flatrate;
+            }
+        }catch($ex){
+            console.log("load error");
         }
         
         this.genre_list = this.model.genres;

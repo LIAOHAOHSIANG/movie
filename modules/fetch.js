@@ -68,11 +68,28 @@ const getDiscoverDrama = async($genre_ids,$year = 0,$page = 1) => {
     return await axios.get(getUrl("/discover/tv",$parms))
 }
 
+/**
+ * 熱門電影
+ */
 const getPopularMovie = async() => {
     const $parms = Array();
     $parms['sort_by'] = "popularity.desc";
 
     return await axios.get(getUrl("/discover/movie",$parms))
+}
+
+/**
+ * 熱門劇
+ */
+const getPopularDrama = async($language) => {
+    const $parms = Array();
+    $parms['sort_by'] = "popularity.desc";
+
+    if($language){
+        $parms['with_original_language'] = $language;
+    }
+
+    return await axios.get(getUrl("/discover/tv",$parms))
 }
 
 const getSearchAll = async($query,$page = 1) => {
@@ -117,6 +134,7 @@ export {
     getDiscoverMovie,
     getDiscoverDrama,
     getPopularMovie,
+    getPopularDrama,
     getSearchAll,
     getSearchMovie,
     getSearchDrama

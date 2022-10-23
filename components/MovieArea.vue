@@ -15,9 +15,17 @@
                         <!-- Slides -->
                         <div v-for="($item) in list" :key="$item.id" class="swiper-slide">
                             <MovieCard
+                            v-if="type == 'movie'"
                             :title="$item.title"
                             :score="$item.vote_average"
                             :link="'/movie/'+$item.id"
+                            :img_url="'https://image.tmdb.org/t/p/w220_and_h330_face/'+$item.backdrop_path"
+                            ></MovieCard>
+                            <MovieCard
+                            v-else
+                            :title="$item.name"
+                            :score="$item.vote_average"
+                            :link="'/drama/'+$item.id"
                             :img_url="'https://image.tmdb.org/t/p/w220_and_h330_face/'+$item.backdrop_path"
                             ></MovieCard>
                         </div>
@@ -43,6 +51,10 @@ export default {
         MovieCard,
     },
     props: {
+        type:{
+            type: String,
+            default: "movie"
+        }, 
         title:{
             type: String
         },
@@ -64,19 +76,20 @@ export default {
     mounted:function() {
 
         new Swiper('.swiper', {
-            // Optional parameters
             direction: 'horizontal',
             loop: true,
             slidesPerView:'auto',
             observer:true,
             observeParents:true,
-            // Navigation arrows
             navigation: {
                 nextEl: '.slick-next',
                 prevEl: '.slick-prev',
             },
 
         });
+    },
+    methods:{
+
     }
 }
 </script>
