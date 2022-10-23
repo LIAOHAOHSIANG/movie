@@ -35,17 +35,43 @@
                 </section>
             </div>
         </div>
-        <div v-if="model" class="movie_information">
-            演員名單
+        <div v-if="model" class="movie_information ">
+            <div class="cast">
+                <div v-for="$item in model.credits.cast" :key="$item.id">
+                    <div class="cast_image" :style="{'background-image':'url(https://www.themoviedb.org/t/p/original/'+$item.profile_path+')'}">
+                    </div>
+                    <div>
+                        {{$item.name}}
+                    </div>
+                    
+                </div>
+            </div>
         </div>
         <div v-if="model" class="movie_information">
-            評論
+            <div class="review">
+                
+                <div class="review_item"  v-for="$item in review_list" :key="$item.id">
+                    <div class="review_item-author_image" :style="{'background-image':'url(https://www.themoviedb.org/t/p/original/'+$item.author_details.avatar_path+')'}">
+                    </div>
+                    <div>
+                        <div class="review_item-author_name">
+                            {{$item.author_details.username}}
+                        </div>
+                        <div>
+                            星號
+                        </div>
+                        <div class="review_item-comment">
+                            {{$item.content}}
+                        </div>
+
+                    </div>
+                    <div class="review_item-edit">編輯</div>
+                </div>
+            </div>
         </div>
-        <div v-if="model" class="movie_information">
-            <movie-area title="相關影片"></movie-area>
-        </div>
-        {{model}}
-        
+        <div v-if="model" class="movie_information recommend">
+            <movie-area :list="recommend_list" title="相關影片"></movie-area>
+        </div>        
         <div>
             <iframe v-if="video" width="560" height="315" :src="'https://www.youtube.com/embed/'+video" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
@@ -70,7 +96,10 @@ export default {
             model: null,
             genre_list:[],
             provide_list:[],
-            video:null
+            video:null,
+            recommend_list:[],
+            recommend_page:1,
+            review_list:[]
         };
     },
     mounted: function () {
@@ -87,6 +116,8 @@ export default {
             });
             this.provide_list = this.model['watch/providers'].results.TW.rent;
             this.genre_list = this.model.genres;
+            this.recommend_list = this.model['recommendations'].results;
+            this.review_list = this.model['reviews'].results;
         });
     },
     methods:{
@@ -156,6 +187,54 @@ export default {
                     margin-right: 9px;
                 }
             }
+        }
+        .cast{
+            overflow-x: scroll;
+            display: flex;
+            &_image{
+                width: 76px;
+                height: 75px;
+                border-radius: 12px;
+                background-size: cover;
+                background-position: center;
+                background-color: #FFFFFF;
+                margin-right: 13px;
+            }
+        }
+        .review{
+            &_item{
+                background: rgba(27, 30, 37, 1);
+                display: flex;
+                padding:10px 16px;
+                border-radius: 14px;
+                &-author_image{
+                    width: 46px;
+                    height: 46px;
+                    background-color:white;
+                    border-radius: 100%;
+                    flex:0 0 46px;
+                    margin-right: 12px;
+                }
+                &-author_name{
+                    font-size: 16px;
+                    font-weight: bold;
+                }
+
+                &-comment{
+                    font-size: 14px;
+                    font-weight: 400;
+                }
+
+                &-edit{
+                    color: rgba(193, 1, 113, 1);
+                    font-size: 14px;
+                    flex:0 0 29px;
+                    margin-left: 12px;
+                }
+            }
+        }
+        &.recommend{
+            padding:0px;
         }
     }
 </style>

@@ -37,7 +37,6 @@
 import Swiper from 'swiper'
 import MovieCard from '/components/MovieCard.vue';
 import 'swiper/css/swiper.css';
-import { getPopularMovie } from '/modules/fetch.js'
 
 export default {
     components: {
@@ -50,24 +49,19 @@ export default {
         isDark:{
             type: Boolean,
             default: false
+        },
+        list:{
+            type: Array,
+            default: []
         }
     },
     methods: {
     },
     data:function(){
         return {
-            list:[]
         }
     },
     mounted:function() {
-        getPopularMovie()
-        .then((response) => {
-            console.log("更新成功");
-            var $data = response.data;
-            this.list = $data.results;
-            console.log(this.list);
-
-        });
 
         new Swiper('.swiper', {
             // Optional parameters

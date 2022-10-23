@@ -14,7 +14,7 @@ const getUrl = ($url,$parms = []) => {
 
 const getMovie = async($movie_id) => {
     const $parms = Array();
-    $parms['append_to_response'] = 'videos,keywords,watch/providers';
+    $parms['append_to_response'] = 'videos,keywords,watch/providers,recommendations,reviews,credits';
 
     return await axios.get(getUrl("/movie/"+$movie_id,$parms))
 }
