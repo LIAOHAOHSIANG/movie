@@ -158,7 +158,8 @@ export default {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    width: 62.98px;
+                    padding-left: 12px;
+                    padding-right: 12px;
                     height: 30.32px;
                     background: #161616;
                     border: 0.6px solid #FFFFFF;
