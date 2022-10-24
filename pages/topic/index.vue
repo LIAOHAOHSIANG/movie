@@ -1,10 +1,10 @@
 <template>
     <div class="topic container not-banner">
-        <div v-for="($item,$key) in list" :key="$key" class="topic_card">
+        <a v-for="($item,$key) in list" :key="$key" :href="'/topic/'+$item.key" class="topic_card">
             <div class="topic_card-title">
                 {{$item.name}}
             </div>            
-        </div>
+        </a>
     </div>
 </template>
 
@@ -18,16 +18,55 @@ export default {
     data:function (){
         return {
             list:[
-                1,2,3,4,5,6,7,8,9,10,11
+                {
+                    key:"romantic",
+                    name:"浪漫滿屋",
+                    img_url:""
+                },
+                {
+                    key:"korean_drama",
+                    name:"熱門韓劇",
+                    img_url:""
+                },
+                {
+                    key:"comedy",
+                    name:"喜劇之王",
+                    img_url:""
+                },
+                {
+                    key:"horror",
+                    name:"驚悚恐怖",
+                    img_url:""
+                },
+                {
+                    key:"suspense",
+                    name:"燒腦懸疑",
+                    img_url:""
+                },
+                {
+                    key:"action",
+                    name:"動作冒險",
+                    img_url:""
+                },
+                {
+                    key:"animation",
+                    name:"動漫卡通",
+                    img_url:""
+                },
+                {
+                    key:"zombie",
+                    name:"喪屍末日",
+                    img_url:""
+                },
+                {
+                    key:"netflix",
+                    name:"Netflix精選",
+                    img_url:""
+                },
             ]
         }
     },
     mounted:function() {
-        getMovieGenre()
-        .then((response)=>{
-            console.log(response.data);
-            this.list = response.data.genres;
-        })
     }
 }
 </script>

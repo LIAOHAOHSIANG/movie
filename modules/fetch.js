@@ -54,6 +54,15 @@ const getDiscoverMovie = async($genre_ids,$year = 0,$page = 1) => {
     return await axios.get(getUrl("/discover/movie",$parms))
 }
 
+
+const getProviderMovie = async($provider) => {
+    const $parms = Array();
+    $parms['with_watch_providers'] = $provider;
+
+    return await axios.get(getUrl("/discover/movie",$parms))
+}
+
+
 const getDiscoverDrama = async($genre_ids,$year = 0,$page = 1) => {
     const $parms = Array();
     $parms['with_genres'] = $genre_ids;
@@ -125,6 +134,15 @@ const getSearchDrama = async($query,$page = 1) => {
     return await axios.get(getUrl("/search/tv", $parms))
 }
 
+const getProvider = async() => {
+
+    return await axios.get(getUrl("/watch/providers/movie"))
+}
+
+
+
+
+
 export {
     getMovie,
     getDrama,
@@ -137,5 +155,7 @@ export {
     getPopularDrama,
     getSearchAll,
     getSearchMovie,
-    getSearchDrama
+    getSearchDrama,
+    getProvider,
+    getProviderMovie
 }
