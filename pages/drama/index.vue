@@ -1,8 +1,11 @@
 <template>
     <div class="container not-banner">
         <filter-div v-if="genre_list.length>0" :list="genre_list" 
+            type="drama"
             v-on:onChangeType="changeType"
-            v-on:onChangeYear="changeYear"></filter-div>
+            v-on:onChangeYear="changeYear"
+            v-on:onChangeSort="changeSort"
+            ></filter-div>
         <div class="card_gird">
             <div v-for="($item) in list" :key="$item.id" class="card_gird-item">
                 <movie-card 
@@ -38,7 +41,8 @@ export default {
             list:[],
             genre_id:null,
             year:null,
-            page:1
+            page:1,
+            sort_value:'popularity'
         }
     },
     mounted: function () {
@@ -49,7 +53,7 @@ export default {
     },
     methods:{
         refreshMovie:function(){
-            getDiscoverDrama(this.genre_id,this.year)
+            getDiscoverDrama(this.genre_id,this.year,1,this.sort_value)
             .then( (response) => {
                 console.log("更新成功");
                 var $data = response.data;
@@ -59,7 +63,7 @@ export default {
             });
         },
         getNextPage:function(){
-            getDiscoverDrama(this.genre_id,this.year,this.page)
+            getDiscoverDrama(this.genre_id,this.year,this.page,this.sort_value)
             .then( (response) => {
                 var $data = response.data;
                 console.log($data);
@@ -76,6 +80,10 @@ export default {
         },
         changeType:function($value){
             this.genre_id = $value;
+            this.refreshMovie();
+        },
+        changeSort:function($value){
+            this.sort_value = $value;
             this.refreshMovie();
         }
     }
