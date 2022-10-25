@@ -2,7 +2,9 @@
     <div class="container not-banner">
         <div v-if="model" class="movie_information">
             <big-movie-card
+                @click="display_trailer=true"
                 :img_url="model.backdrop_path"
+                :has_play_button="video"
             ></big-movie-card>
             <div class="movie_information-content">
                 <div class="genre">
@@ -37,7 +39,7 @@
         </div>
         <div v-if="model" class="movie_information ">
             <div class="cast">
-                <div v-for="$item in model.credits.cast" :key="$item.id">
+                <div v-for="$item in model.credits.cast" :key="$item.id" class="cast_item">
                     <div class="cast_image" :style="{'background-image':'url(https://www.themoviedb.org/t/p/original/'+$item.profile_path+')'}">
                     </div>
                     <div>
@@ -70,10 +72,10 @@
             </div>
         </div>
         <div v-if="model && recommend_list.length > 0" class="movie_information recommend">
-            <movie-area :list="recommend_list" title="相關影片"></movie-area>
+            <movie-area :list="recommend_list" :type="type" title="相關影片"></movie-area>
         </div>        
-        <div>
-            <iframe v-if="video" width="560" height="315" :src="'https://www.youtube.com/embed/'+video" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div v-if="video && display_trailer" @click="display_trailer=false" class="trailer" >
+            <iframe :src="'https://www.youtube.com/embed/'+video" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </div>
 </template>
@@ -107,7 +109,8 @@ export default {
             video:null,
             recommend_list:[],
             recommend_page:1,
-            review_list:[]
+            review_list:[],
+            display_trailer:false
         };
     },
     mounted: function () {
@@ -201,6 +204,11 @@ export default {
         .cast{
             overflow-x: scroll;
             display: flex;
+            &_item{
+                width: 76px; 
+                margin-right: 13px;
+                text-align: center;
+            }
             &_image{
                 width: 76px;
                 height: 75px;
@@ -208,7 +216,6 @@ export default {
                 background-size: cover;
                 background-position: center;
                 background-color: #FFFFFF;
-                margin-right: 13px;
             }
         }
         .review{
@@ -250,6 +257,22 @@ export default {
         }
         &.recommend{
             padding:0px;
+        }
+    }
+    .trailer{
+        background: rgba(27, 30, 37, 0.8);
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        z-index: 999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        iframe{
+            width:60vw;
+            height:33.75vw;
         }
     }
 </style>
