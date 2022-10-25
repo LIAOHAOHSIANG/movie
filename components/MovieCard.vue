@@ -1,7 +1,7 @@
 <template>
     <a :href="link" class="movie-card">
         <div class="movie-card_poster" :style="{'background-image' : 'linear-gradient(180deg, rgba(22, 22, 22, 0) 30.58%, rgba(22, 22, 22, 0.98) 100%), url('+img_url+')'}">
-            <div class="movie-card_score">{{score}}</div>
+            <div class="movie-card_score">{{score.toFixed(1)}}</div>
         </div>
         <div class="movie-card_title">{{title}}</div>
     </a>

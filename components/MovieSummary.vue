@@ -11,7 +11,7 @@
                     <div v-for="($item) in genre_list" :key="$item.id"  class="genre_item">{{$item.name}}</div>
                 </div>
                 <h1>{{model.title || model.name}}
-                    <div class="scope">{{model.vote_average}}</div>
+                    <div class="scope">{{model.vote_average.toFixed(1)}}</div>
                 </h1>
                 <section>
                     <wtw-title>{{model.release_date || model.first_air_date}}</wtw-title>
