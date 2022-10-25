@@ -24,7 +24,24 @@
                 <li  :class="{'active':target_page == 'playlist'}"><a href="/playlist">我的片單</a></li>
             </ul>
             <div class="header-profile">
-                <img class="header-profile_image"/>
+                <img @click="login_panel_display=true" class="header-profile_image"/>
+            </div>
+        </div>
+        <div v-if="login_panel_display" class="login" @click="login_panel_display=false">
+            <div class="login_panel">
+                <div class="login_panel-header">
+                    請登入帳號
+                </div>
+                <div class="login_panel-content">
+                    <div class="login_button line_login_button">
+                        LINE登入
+                    </div>
+                    <div @click="login_panel_display=false" class="login_button cancel_button">
+                        <div class="cancel_button-conatiner">
+                            取消
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -48,7 +65,8 @@ export default {
             target_page:"",
             hideBackground: false,
             alwaysHideBackground:false,
-            search_text:""
+            search_text:"",
+            login_panel_display:false
         }
     },
     mounted:function() {
@@ -244,7 +262,61 @@ export default {
                 height: 42px;
                 border-radius: 100%;
                 margin: auto;
+                cursor: pointer;
             }
+        }
+    }
+    .login{
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(27, 30, 37, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &_panel{
+            background: rgba(22, 22, 22, 1);
+            border-radius: 28px;
+            padding:40px 60px;
+            &-header{
+                text-align: center;
+            }
+            &-content{
+                margin-top: 28px;
+                .login_button{
+                    width: 250px;
+                    height: 42px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: auto;
+                    margin-right: auto;
+                    border-radius: 13px;
+                    margin-top: 10px;
+                    font-size: 16px;
+                    font-weight: 400;
+                    cursor: pointer;
+                    &.line_login_button{
+                        background-color: rgb(83,181,53);
+                    }
+                    &.cancel_button{
+                        background: $primary_color;
+                        padding:1px;
+                        & .cancel_button-conatiner{
+                            background: #1B1E25;
+                            border-radius: 13px;
+                            width: 100%;
+                            height: 100%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                    }
+                }
+            }
+        
         }
     }
 </style>
