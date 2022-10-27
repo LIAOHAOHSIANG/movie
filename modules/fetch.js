@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const api_url = "https://api.themoviedb.org/3";
-const api_key = "4d8aa15e2551b4d3a51bf0064361cfa8";
+const api_url = process.env.TMDB_API_BASE_URL;
+const api_key = process.env.TMDB_API_KEY;
 
 const getUrl = ($url,$parms = []) => {
     let $parms_text = "";
