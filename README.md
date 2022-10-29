@@ -24,4 +24,6 @@
    docker build --build-arg TMDB_API_BASE_URL={url} --build-arg TMDB_API_KEY={key}  .
    ```
 2. 建立並運行container
+   ```
    docker run  -d -p 80:8080 {image_name}
+   ```
