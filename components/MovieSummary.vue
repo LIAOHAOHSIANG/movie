@@ -1,12 +1,12 @@
 <template>
-    <div class="container not-banner">
-        <div v-if="model" class="movie_information">
+    <div class="container movie-summary">
+        <div v-if="model" class="movie-summary-item">
             <big-movie-card
                 @click="display_trailer=true"
                 :img_url="model.backdrop_path"
                 :has_play_button="video"
             ></big-movie-card>
-            <div class="movie_information-content">
+            <div class="movie-summary-item-content">
                 <div class="genre">
                     <div v-for="($item) in genre_list" :key="$item.id"  class="genre_item">{{$item.name}}</div>
                 </div>
@@ -37,7 +37,7 @@
                 </section>
             </div>
         </div>
-        <div v-if="model" class="movie_information ">
+        <div v-if="model" class="movie-summary-item  ">
             <div class="cast">
                 <div v-for="$item in model.credits.cast" :key="$item.id" class="cast_item">
                     <div class="cast_image" :style="{'background-image':'url(https://www.themoviedb.org/t/p/original/'+$item.profile_path+')'}">
@@ -49,7 +49,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="model && review_list.length > 0" class="movie_information">
+        <div v-if="model && review_list.length > 0" class="movie-summary-item ">
             <div class="review">
                 
                 <div class="review_item"  v-for="$item in review_list" :key="$item.id">
@@ -71,7 +71,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="model && recommend_list.length > 0" class="movie_information recommend">
+        <div v-if="model && recommend_list.length > 0" class="movie-summary-item  recommend">
             <movie-area :list="recommend_list" :type="type" title="相關影片"></movie-area>
         </div>        
         <div v-if="video && display_trailer" @click="display_trailer=false" class="trailer" >
@@ -147,132 +147,140 @@ export default {
 
 <style lang="scss">
     @import 'assets/sass/variable.scss';
-    .movie_information{
-        padding:20px 16px;
-        background-color: rgba(104, 107, 114, 0.1);
-        border-radius: 20px;
-        margin-bottom: 12px;
-        display: flex;
-        &-content{
-            margin-left: 35px;
-            .genre{
+    .movie-summary{
+        margin-top: 60px;
+        padding-top: 24px;
+        @media (max-width:$breakpoint-tablet) {
+            margin-top: 0px;
+            padding-top: 0px;
+        }
+        &-item {
+            padding:20px 16px;
+            background-color: rgba(104, 107, 114, 0.1);
+            border-radius: 20px;
+            margin-bottom: 12px;
+            display: flex;
+            &-content{
+                margin-left: 35px;
+                .genre{
+                    display: flex;
+                    &_item{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding-left: 12px;
+                        padding-right: 12px;
+                        height: 30.32px;
+                        background: #161616;
+                        border: 0.6px solid #FFFFFF;
+                        border-radius: 4px;
+                        font-size: 16px;
+                        margin-right: 10px;
+                    }
+                }
+
+                h1{
+                    margin: 0px;
+                    margin-top: 17.84px;
+                    display: flex;
+                    align-items: center;
+                    .scope{
+                        color: transparent; 
+                        background: $primary_color;
+                        background-clip: text;
+                        font-size: 50px;
+                        margin-left: 18px;
+                        width: 75px;
+                    }
+                }
+                section{
+                    margin-top: 12px;
+                    display: flex;
+                    .wtw-title{
+                        margin-right: 18px;
+                    }
+                    .provider{
+                        width: 36px;
+                        height: 36px;
+                        background-position: center;
+                        background-size: cover;
+                        margin-right: 9px;
+                    }
+                }
+            }
+            .cast{
+                overflow-x: scroll;
                 display: flex;
                 &_item{
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    padding-left: 12px;
-                    padding-right: 12px;
-                    height: 30.32px;
-                    background: #161616;
-                    border: 0.6px solid #FFFFFF;
-                    border-radius: 4px;
-                    font-size: 16px;
-                    margin-right: 10px;
+                    width: 76px; 
+                    margin-right: 13px;
+                    text-align: center;
                 }
-            }
-
-            h1{
-                margin: 0px;
-                margin-top: 17.84px;
-                display: flex;
-                align-items: center;
-                .scope{
-                    color: transparent; 
-                    background: $primary_color;
-                    background-clip: text;
-                    font-size: 50px;
-                    margin-left: 18px;
-                    width: 75px;
-                }
-            }
-            section{
-                margin-top: 12px;
-                display: flex;
-                .wtw-title{
-                    margin-right: 18px;
-                }
-                .provider{
-                    width: 36px;
-                    height: 36px;
-                    background-position: center;
+                &_image{
+                    width: 76px;
+                    height: 75px;
+                    border-radius: 12px;
                     background-size: cover;
-                    margin-right: 9px;
+                    background-position: center;
+                    background-color: #FFFFFF;
                 }
             }
+            .review{
+                width: 100%;
+                &_item{
+                    background: rgba(27, 30, 37, 1);
+                    display: flex;
+                    padding:10px 16px;
+                    border-radius: 14px;
+                    width: auto;
+                    &-author_image{
+                        width: 46px;
+                        height: 46px;
+                        background-color:white;
+                        border-radius: 100%;
+                        flex:0 0 46px;
+                        margin-right: 12px;
+                    }
+                    &-author_name{
+                        font-size: 16px;
+                        font-weight: bold;
+                    }
+
+                    &-content{
+                        flex:1 0 auto;
+                    }
+                    &-comment{
+                        font-size: 14px;
+                        font-weight: 400;
+                    }
+
+                    &-edit{
+                        color: rgba(193, 1, 113, 1);
+                        font-size: 14px;
+                        flex:0 0 29px;
+                        margin-left: 12px;
+                    }
+                }
+            }
+            &.recommend{
+                padding:0px;
+            }
         }
-        .cast{
-            overflow-x: scroll;
+        .trailer{
+            background: rgba(27, 30, 37, 0.8);
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            z-index: 999;
             display: flex;
-            &_item{
-                width: 76px; 
-                margin-right: 13px;
-                text-align: center;
+            justify-content: center;
+            align-items: center;
+            iframe{
+                width:60vw;
+                height:33.75vw;
             }
-            &_image{
-                width: 76px;
-                height: 75px;
-                border-radius: 12px;
-                background-size: cover;
-                background-position: center;
-                background-color: #FFFFFF;
-            }
-        }
-        .review{
-            width: 100%;
-            &_item{
-                background: rgba(27, 30, 37, 1);
-                display: flex;
-                padding:10px 16px;
-                border-radius: 14px;
-                width: auto;
-                &-author_image{
-                    width: 46px;
-                    height: 46px;
-                    background-color:white;
-                    border-radius: 100%;
-                    flex:0 0 46px;
-                    margin-right: 12px;
-                }
-                &-author_name{
-                    font-size: 16px;
-                    font-weight: bold;
-                }
-
-                &-content{
-                    flex:1 0 auto;
-                }
-                &-comment{
-                    font-size: 14px;
-                    font-weight: 400;
-                }
-
-                &-edit{
-                    color: rgba(193, 1, 113, 1);
-                    font-size: 14px;
-                    flex:0 0 29px;
-                    margin-left: 12px;
-                }
-            }
-        }
-        &.recommend{
-            padding:0px;
-        }
-    }
-    .trailer{
-        background: rgba(27, 30, 37, 0.8);
-        width: 100vw;
-        height: 100vh;
-        position: fixed;
-        top: 0px;
-        left: 0px;
-        z-index: 999;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        iframe{
-            width:60vw;
-            height:33.75vw;
         }
     }
 </style>
