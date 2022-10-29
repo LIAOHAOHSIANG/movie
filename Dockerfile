@@ -10,4 +10,12 @@ EXPOSE 8080
 ENV HOST=0.0.0.0
 ENV PORT=8080
 
-CMD [ "sh", "start.sh" ]
+ARG TMDB_API_BASE_URL 
+ARG TMDB_API_KEY
+
+ENV TMDB_API_BASE_URL ${TMDB_API_BASE_URL}
+ENV TMDB_API_KEY ${TMDB_API_KEY}
+
+RUN npm run build
+
+CMD [ "npm", "run", "start" ]
