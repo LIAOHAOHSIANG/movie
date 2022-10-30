@@ -11,7 +11,7 @@
                     <wtw-button :light="false"  @click="$router.push('/movie/'+$item.id)">
                       更多資訊
                     </wtw-button>
-                    <wtw-button v-if="!inPlayList('movie', $item.id)" :light="true" @click="addPlayList('movie', $item.id)">
+                    <wtw-button v-if="!inPlayList('movie', $item.id)" :light="true" @click="addToList('movie', $item.id)">
                       加入片單
                     </wtw-button>
                     <wtw-button v-else :light="false" @click="removePlayList('movie', $item.id)">
@@ -33,6 +33,7 @@ import Swiper from 'swiper'
 import 'swiper/css/swiper.css';
 import { getTopRateMovie } from '/modules/fetch.js';
 import WtwButton from './WtwButton.vue';
+import { addPlayList } from '/modules/api';
 
 export default {
   components: { WtwButton },
@@ -73,12 +74,12 @@ export default {
 
       return false;
     },
-    addPlayList:function($type, $id) {
-      this.play_list.push({
-        'type':$type,
-        'id':$id
-      });
-      alert("成功加入片單");
+    addToList:function($type, $id) {
+      addPlayList($type, $id)
+      .then(()=>{
+        alert("成功加入片單");
+      })
+
     },
     removePlayList:function($type, $id) {
       this.play_list.forEach(($item,$key)=>{

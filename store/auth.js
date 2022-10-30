@@ -25,6 +25,7 @@ export const actions = {
         var $token = $token;
         localStorage.setItem("access_token", $token);
         context.commit('changeLoginState', true)
+        context.dispatch('playlist/init', null, { root: true })
         getUserAvatar()
         .then((response)=>{
             localStorage.setItem("user_avatar", response.data);
