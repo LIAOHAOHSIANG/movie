@@ -1,6 +1,6 @@
 # 電影前台
 
-展示網址: https://movie-5gtzde7vuq-de.a.run.app
+展示網址: https://movie.ultraboa.com
 (部署於GCP Cloud Run)
 
 ## 使用技術
