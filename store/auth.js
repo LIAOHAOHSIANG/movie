@@ -1,4 +1,4 @@
-import axios from 'axios';
+import {getUserAvatar} from '/modules/api.js';
 
 export const state = () => ({
     isLogin: false,
@@ -25,11 +25,7 @@ export const actions = {
         var $token = $token;
         localStorage.setItem("access_token", $token);
         context.commit('changeLoginState', true)
-        axios.get(process.env.API_BASE_URL+"user_avatar",{
-            headers: {
-                Authorization: "Bearer " + $token
-            }
-        })
+        getUserAvatar()
         .then((response)=>{
             localStorage.setItem("user_avatar", response.data);
             context.commit('changeAvatarUrl', response.data)
