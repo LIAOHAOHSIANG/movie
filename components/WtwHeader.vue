@@ -24,16 +24,29 @@
                 <li  :class="{'active':target_page == 'playlist'}"><a href="/playlist">我的片單</a></li>
             </ul>
             <div class="header-profile">
-                <img @click="login_panel_display=true" class="header-profile_image"/>
+                <img @click="login_panel_display=true" class="header-profile_image" :style="{'background-image':'url('+$store.state.auth.avatar_url+')'}"/>
             </div>
         </div>
         <div v-if="login_panel_display" class="login" @click="login_panel_display=false">
-            <div class="login_panel">
+            <div v-if="$store.state.auth.isLogin" class="login_panel">
                 <div class="login_panel-header">
-                    請登入帳號
+                    您已經登入帳號
                 </div>
                 <div class="login_panel-content">
-                    <div class="login_button line_login_button">
+
+                    <div  class="login_button cancel_button">
+                        <div @click="()=>{$store.dispatch('auth/logout')}" class="cancel_button-conatiner">
+                            登出
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-else class="login_panel">
+                <div class="login_panel-header">
+                    請登入帳號 
+                </div>
+                <div class="login_panel-content">
+                    <div @click="loginWithLine()" class="login_button line_login_button">
                         LINE登入
                     </div>
                     <div @click="login_panel_display=false" class="login_button cancel_button">
@@ -66,19 +79,24 @@ export default {
             hideBackground: false,
             alwaysHideBackground:false,
             search_text:"",
-            login_panel_display:false
+            login_panel_display:false,
+            isLogin:false
         }
     },
     mounted:function() {
+        this.$store.dispatch('auth/check')
         this.checkPath();
         this.handleScroll();
     },
     watch:{
         '$route.path': function(){
             this.checkPath();
-        }
+        },
     },
     methods:{
+        loginWithLine() {
+            window.location.href = process.env.AUTH_URL;
+        },
         search($value) {
             this.$router.push('/search/'+this.search_text)
         },
@@ -257,7 +275,8 @@ export default {
             }
 
             &_image{
-                background-color: #ffffff;
+                background-color: white;
+                background-size: cover;
                 width: 42px;
                 height: 42px;
                 border-radius: 100%;

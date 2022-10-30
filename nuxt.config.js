@@ -8,5 +8,7 @@ export default {
     env: {
         TMDB_API_BASE_URL: process.env.TMDB_API_BASE_URL,
         TMDB_API_KEY: process.env.TMDB_API_KEY,
+        API_BASE_URL: process.env.API_BASE_URL,
+        AUTH_URL: process.env.AUTH_URL,
     }
 }
