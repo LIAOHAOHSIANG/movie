@@ -9,11 +9,19 @@ import MovieSummary from '/components/MovieSummary.vue';
 import { getDrama } from '/modules/fetch.js'
 
 export default {
-    components: { MovieSummary },
+    components: { 
+        MovieSummary 
+    },
+    head:function(){
+        return {
+            title: this.title,
+        }
+    },
     data:function(){
         return {
             drama_id:null,
-            model:null
+            model:null,
+            title:""
         }
     },
     mounted:function(){
@@ -22,6 +30,7 @@ export default {
         .then( (response) => {
             var $data = response.data;
             this.model = $data;
+            this.title = this.model.name;
         });
     }
 }

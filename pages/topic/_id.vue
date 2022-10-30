@@ -29,9 +29,14 @@ import { getSearchAll, getPopularDrama, getDiscoverMovie ,getProviderMovie} from
 
 export default {
     components: {
-    MovieCard,
-    WtwTitle
-},
+        MovieCard,
+        WtwTitle
+    },
+    head:function(){
+        return {
+            title: this.name,
+        }
+    },
     data:function (){
         return {
             type_id:null,

@@ -8,6 +8,16 @@
 
 export default {
     name: 'PlaylistView',
+    head:function(){
+        return {
+            title: this.title,
+        }
+    },
+    data:function (){
+        return {
+            title:"我的片單"
+        }
+    }
 }
 </script>
 

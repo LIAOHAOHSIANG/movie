@@ -35,6 +35,11 @@ export default {
         MovieCard,
         WtwButton
     },
+    head:function(){
+        return {
+            title: this.title,
+        }
+    },
     data:function () {
         return {
             genre_list:[],
@@ -42,7 +47,8 @@ export default {
             genre_id:null,
             year:null,
             page:1,
-            sort_value:'popularity'
+            sort_value:'popularity',
+            title:"戲劇"
         }
     },
     mounted: function () {

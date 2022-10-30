@@ -21,12 +21,18 @@ export default {
         WtwBanner,
         MovieArea
     },
+    head:function(){
+        return {
+            title: this.title,
+        }
+    },
     data:function(){
         return {
             hot_movie_list:[],
             hot_korean_drama_list:[],
             hot_china_drama_list:[],
-            hot_america_drama_list:[]
+            hot_america_drama_list:[],
+            title:"首頁"
         }
     },
     mounted:function(){

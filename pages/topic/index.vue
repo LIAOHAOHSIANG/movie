@@ -15,6 +15,11 @@ export default {
     name: 'TopicView',
     components: {
     },
+    head:function(){
+        return {
+            title: this.title,
+        }
+    },
     data:function (){
         return {
             list:[
@@ -63,7 +68,8 @@ export default {
                     name:"Netflix精選",
                     img_url:""
                 },
-            ]
+            ],
+            title:"主題館"
         }
     },
     mounted:function() {

@@ -45,7 +45,16 @@ import { getSearchAll,getSearchMovie,getSearchDrama } from '/modules/fetch.js'
 import WtwButton from '/components/WtwButton.vue'
 
 export default {
-    components: { WtwSelectButton,MovieCard,WtwButton },
+    components: { 
+        WtwSelectButton,
+        MovieCard,
+        WtwButton 
+    },
+    head:function(){
+        return {
+            title: this.title,
+        }
+    },
     data:function(){
         return {
             type:"all",
@@ -54,7 +63,8 @@ export default {
             movie_page:1,
             movie_list:[],
             drama_page:1,
-            drama_list:[]
+            drama_list:[],
+            title:"搜尋"
         }
     },
     mounted:function(){

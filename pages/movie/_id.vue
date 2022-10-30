@@ -12,10 +12,16 @@ export default {
     components: {
         MovieSummary 
     },
+    head:function(){
+        return {
+            title: this.title,
+        }
+    },
     data:function(){
         return {
             movie_id:null,
-            model: null
+            model: null,
+            title:"",
         }
     },
     mounted:function(){
@@ -24,6 +30,7 @@ export default {
             .then((response) => {
                 var $data = response.data;
                 this.model = $data;
+                this.title = this.model.title;
             })
     }
 }
